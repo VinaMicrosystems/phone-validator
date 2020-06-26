@@ -1,0 +1,43 @@
+hash: 3a7fa3897b83861b4068beb5d7cac31cb698b9257f8ed0c36d62eb7be7fd71b6
+updated: 2020-06-25T12:15:33.645593079+03:00
+imports:
+- name: github.com/cheekybits/genny
+  version: df3d48aa411e8e28498e452e42cc1e40498a9e58
+  subpackages:
+  - generic
+- name: github.com/golang/protobuf
+  version: d04d7b157bb510b1e0c10132224b616ac0e26b17
+  subpackages:
+  - proto
+- name: github.com/nyaruka/phonenumbers
+  version: f3ceab37fa3f534ab8e4b73dab0e252b1c31755f
+- name: google.golang.org/protobuf
+  version: a9513ebdb86068803ccda83ded57e8330a72961e
+  subpackages:
+  - encoding/prototext
+  - encoding/protowire
+  - internal/descfmt
+  - internal/descopts
+  - internal/detrand
+  - internal/encoding/defval
+  - internal/encoding/messageset
+  - internal/encoding/tag
+  - internal/encoding/text
+  - internal/errors
+  - internal/fieldsort
+  - internal/filedesc
+  - internal/filetype
+  - internal/flags
+  - internal/genid
+  - internal/impl
+  - internal/mapsort
+  - internal/pragma
+  - internal/set
+  - internal/strs
+  - internal/version
+  - proto
+  - reflect/protoreflect
+  - reflect/protoregistry
+  - runtime/protoiface
+  - runtime/protoimpl
+testImports: []

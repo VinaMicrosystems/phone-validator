@@ -1,0 +1,6 @@
+package: phone-api
+import:
+- package: github.com/cheekybits/genny
+  subpackages:
+  - generic
+- package: github.com/nyaruka/phonenumbers
