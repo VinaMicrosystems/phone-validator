@@ -2,15 +2,13 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
 
-	"github.com/cheekybits/genny/generic"
 	"github.com/nyaruka/phonenumbers"
 )
-
-type body generic.Type
 
 type errorResponse struct {
 	Message string `json:"message"`
@@ -28,7 +26,7 @@ type successResponse struct {
 }
 
 func main() {
-
+	os.Setenv("PORT", "8081")
 	port := os.Getenv("PORT")
 
 	if port == "" {
@@ -36,7 +34,7 @@ func main() {
 	}
 
 	http.HandleFunc("/api", indexHandler)
-
+	fmt.Printf("HTTP instance running at port : %s", port)
 	log.Fatal(http.ListenAndServe(":"+port, nil))
 
 }
@@ -69,17 +67,26 @@ func indexHandler(w http.ResponseWriter, req *http.Request) {
 	// country param
 	country := req.URL.Query().Get("country")
 
-	if phone == "" {
-		http.Error(w, "Missing phone number", 400)
+	if phone == "" || country == "" {
+		err := errorResponse{Message: "Missing params", Error: "400"}
+		errJSON, _ := json.Marshal(err)
+		w.WriteHeader(200)
+		w.Header().Set("Content-Type", "application/json")
+		w.Write(errJSON)
 		return
 	}
 
 	metadata, err := phonenumbers.Parse(phone, country)
 
 	if err != nil {
-		http.Error(w, "Error parsing phone", 500)
+		err := errorResponse{Message: "Missing params", Error: "400"}
+		errJSON, _ := json.Marshal(err)
+		w.WriteHeader(400)
+		w.Header().Set("Content-Type", "application/json")
+		w.Write(errJSON)
 		return
 	}
+
 	response := successResponse{
 		NationalNumber: *metadata.NationalNumber,
 		CountryCode:    *metadata.CountryCode,
@@ -90,6 +97,7 @@ func indexHandler(w http.ResponseWriter, req *http.Request) {
 		NationalFormatted:      phonenumbers.Format(metadata, phonenumbers.NATIONAL),
 		Version:                "debug",
 	}
+
 	js, err := json.Marshal(response)
 
 	if err != nil {
