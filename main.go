@@ -26,7 +26,7 @@ type successResponse struct {
 }
 
 func main() {
-	os.Setenv("PORT", "8081")
+
 	port := os.Getenv("PORT")
 
 	if port == "" {
