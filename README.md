@@ -15,9 +15,18 @@ Gives response:
   "version": "debug"
 }
 ``
+___
+or view live action at :) **https://babu-ke.web.app/** 
 
  ## SET UP
-Both Glide and go mod have been used because Heroku requires go mod. Use either one for dependency management.
+Both Glide and go mod have been used because Heroku requires go mod and Glide is preffered :). Use either one for dependency management.
+To set up
+1. git clone this repo
+2. run ``go get && go build`` f
+3. Invoke the executable binary
+
+## Tip
+Use go-watcher **https://github.com/canthefason/go-watcher** to watch .go files as you edit them.
 
 ## Contribution
 PRs are highly welcome!
